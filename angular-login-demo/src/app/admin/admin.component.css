@@ -1,0 +1,21 @@
+button {
+  background: rgb(1, 29, 51);
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main-sidebar {
+  margin: 6px;
+  padding: 6px;
+  align-content: center;
+}
+
+.board {
+  background-position-x: 1000000px;
+  padding: 10px;
+}
+
+.wrapper {
+  position: relative;
+}

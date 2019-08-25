@@ -1,0 +1,19 @@
+<h1>Teachers Portal</h1>
+<div class='teacher'>
+
+  <table border='1' width='100%' style='border-collapse: collapse;'>
+    <tr>
+      <th>Teacher ID</th>
+      <th>Subject ID</th>
+      <th>Subject Name</th>
+      <th>Teacher Name</th>
+
+    </tr>
+
+    <tr *ngFor="let teacher of teachers">
+      <td>{{ teacher.teacherId }}</td>
+      <td>{{ teacher.subjectid }}</td>
+      <td>{{ teacher.subName }}</td>
+      <td>{{ teacher.teacherName }}</td>
+    </tr>
+  </table>
