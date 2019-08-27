@@ -16,6 +16,12 @@ export class ApiService {
       `${this.PHP_API_SERVER}/api/t_read.php`
     );
   }
+  create(policy: Policy): Observable<Policy> {
+    return this.httpClient.post<Policy>(
+      `${this.PHP_API_SERVER}/api/creating.php`,
+      policy
+    );
+  }
   readPolicies(): Observable<Policy[]> {
     return this.httpClient.get<Policy[]>(`${this.PHP_API_SERVER}/api/read.php`);
   }

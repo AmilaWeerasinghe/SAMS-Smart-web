@@ -1,6 +1,6 @@
-import { Test } from "./../test";
+import { Policy } from "./../policy";
 import { Component, OnInit } from "@angular/core";
-import { ApitestService } from "../apitest.service";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: "app-test",
@@ -8,14 +8,32 @@ import { ApitestService } from "../apitest.service";
   styleUrls: ["./test.component.scss"]
 })
 export class TestComponent implements OnInit {
-  testies: Test[];
-  selectedtesties: Test = { id: null, num: null, password: null };
-  constructor(private apitestService: ApitestService) {}
+  policies: Policy[];
+  selectedPolicy: Policy = { id: null, number: null, amount: null };
 
-  ngOnInit() {
-    this.apitestService.read_test().subscribe((testies: Test[]) => {
-      this.testies = this.testies;
-      console.log(this.testies);
+  constructor(private apiService: ApiService) {}
+  createOrUpdatePolicy(form) {
+    if (this.selectedPolicy && this.selectedPolicy.id) {
+      form.value.id = this.selectedPolicy.id;
+      this.apiService.updatePolicy(form.value).subscribe((policy: Policy) => {
+        console.log("Policy updated", policy);
+      });
+    } else {
+      this.apiService.createPolicy(form.value).subscribe((policy: Policy) => {
+        console.log("Policy created, ", policy);
+      });
+    }
+  }
+
+  selectPolicy(policy: Policy) {
+    this.selectedPolicy = policy;
+  }
+
+  deletePolicy(id) {
+    this.apiService.deletePolicy(id).subscribe((policy: Policy) => {
+      console.log("Policy deleted, ", policy);
     });
   }
+
+  ngOnInit() {}
 }
