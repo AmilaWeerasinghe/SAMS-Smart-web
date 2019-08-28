@@ -1,0 +1,15 @@
+<h1>Student Attendance Management</h1>
+<div class="stud">
+
+
+
+  <form #f="ngForm">
+    <label>Present Days</label>
+    <input type="text" name="number" [(ngModel)]="selectedPolicy.number">
+    <br>
+    <label>Expected days</label>
+    <input type="text" name="amount" [(ngModel)]="selectedPolicy.amount">
+    <br>
+    <input type="button" (click)="createOrUpdatePolicy(f)" value="Create or Update Policy">
+  </form>
+</div>

@@ -1,6 +1,8 @@
+import { Student } from "./../student";
 import { Policy } from "./../policy";
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../api.service";
+import { ApistudentService } from "../apistudent.service";
 
 @Component({
   selector: "app-test",
@@ -8,32 +10,44 @@ import { ApiService } from "../api.service";
   styleUrls: ["./test.component.scss"]
 })
 export class TestComponent implements OnInit {
-  policies: Policy[];
-  selectedPolicy: Policy = { id: null, number: null, amount: null };
+  students: Student[];
+  selectedStudent: Student = { stdid: null, age: null };
+  a = 10;
+  b = 1;
 
-  constructor(private apiService: ApiService) {}
-  createOrUpdatePolicy(form) {
-    if (this.selectedPolicy && this.selectedPolicy.id) {
-      form.value.id = this.selectedPolicy.id;
-      this.apiService.updatePolicy(form.value).subscribe((policy: Policy) => {
-        console.log("Policy updated", policy);
+  constructor(private apistudentService: ApistudentService) {}
+  create(form) {
+    this.apistudentService
+      .creating(form.value)
+      .subscribe((student: Student) => {
+        console.log("Student ", student);
       });
+  }
+  createOrUpdateStudent(form) {
+    if (this.a == this.b) {
+      form.value.id = this.selectedStudent.stdid;
+      this.apistudentService
+        .update(form.value)
+        .subscribe((student: Student) => {
+          console.log("Student updated", student);
+        });
     } else {
-      this.apiService.createPolicy(form.value).subscribe((policy: Policy) => {
-        console.log("Policy created, ", policy);
-      });
+      this.apistudentService
+        .creating(form.value)
+        .subscribe((student: Student) => {
+          console.log("Student created, ", student);
+        });
     }
   }
 
-  selectPolicy(policy: Policy) {
-    this.selectedPolicy = policy;
+  selectStudent(student: Student) {
+    this.selectedStudent = student;
   }
 
-  deletePolicy(id) {
-    this.apiService.deletePolicy(id).subscribe((policy: Policy) => {
-      console.log("Policy deleted, ", policy);
+  ngOnInit() {
+    this.apistudentService.reading().subscribe((students: Student[]) => {
+      this.students = students;
+      console.log(this.students);
     });
   }
-
-  ngOnInit() {}
 }

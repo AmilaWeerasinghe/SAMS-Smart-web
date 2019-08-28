@@ -11,27 +11,26 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Validate.
-  if(trim($request->number) === '' || (float)$request->amount < 0)
+  if(trim($request->sdtid) === '' || (float)$request->age < 0)
   {
     return http_response_code(400);
   }
 
   // Sanitize.
-  $number = mysqli_real_escape_string($con, trim($request->number));
-  $amount = mysqli_real_escape_string($con, (int)$request->amount);
+  $number = mysqli_real_escape_string($con, trim($request->stdid));
+  $amount = mysqli_real_escape_string($con, (int)$request->age);
 
 
   // Create.
-  $sql = "INSERT INTO `student`(`stdid`,`name`,`age`) VALUES ('{$number}','{$name}','{$amount}')";
+  $sql = "INSERT INTO `std`(`id`,`stdid`,`age`) VALUES (null,'{$number}','{$amount}')";
 
   if(mysqli_query($con,$sql))
   {
     http_response_code(201);
     $policy = [
-      'stdid' => $number,
-	  'name' => $name,
-      'age' => $amount
-      
+      'number' => $number,
+      'amount' => $amount,
+      'id'    => mysqli_insert_id($con)
     ];
     echo json_encode($policy);
   }

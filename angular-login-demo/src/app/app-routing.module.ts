@@ -1,3 +1,4 @@
+import { RegisterComponent } from "./register/register.component";
 import { TestComponent } from "./test/test.component";
 import { TeacherComponent } from "./teacher/teacher.component";
 import { AdminpageComponent } from "./adminpage/adminpage.component";
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "app-header", component: AppheaderComponent },
   { path: "teacher", component: TeacherComponent },
   { path: "test", component: TestComponent },
+  { path: "register", component: RegisterComponent },
   { path: "admin-page", component: AdminpageComponent },
   { path: "admin", component: AdminComponent, canActivate: [AuthGuard] }
 ];

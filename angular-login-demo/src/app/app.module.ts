@@ -15,6 +15,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AdminpageComponent } from "./adminpage/adminpage.component";
 import { TeacherComponent } from "./teacher/teacher.component";
 import { TestComponent } from './test/test.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TestComponent } from './test/test.component';
     DashboardComponent,
     AdminpageComponent,
     TeacherComponent,
-    TestComponent
+    TestComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

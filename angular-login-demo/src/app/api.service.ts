@@ -1,3 +1,4 @@
+import { Student } from "./student";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
@@ -16,10 +17,10 @@ export class ApiService {
       `${this.PHP_API_SERVER}/api/t_read.php`
     );
   }
-  create(policy: Policy): Observable<Policy> {
-    return this.httpClient.post<Policy>(
+  create(student: Student): Observable<Student> {
+    return this.httpClient.post<Student>(
       `${this.PHP_API_SERVER}/api/creating.php`,
-      policy
+      student
     );
   }
   readPolicies(): Observable<Policy[]> {
